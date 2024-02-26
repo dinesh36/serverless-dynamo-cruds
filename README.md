@@ -7,4 +7,5 @@ Sample application for simple crud operation APIs with dynamo DB and serverless
 - [AWS lambda function setup](https://www.youtube.com/watch?v=sku9Rrci-tE)
 - [AWS http api setup](https://www.youtube.com/watch?v=Jruqo0KVOWk)
 - [AWS dynamoDB table creation](https://www.youtube.com/watch?v=1de8NkTseqM)
-- [Using dynamoDB with lambda function to get data](https://www.youtube.com/watch?v=AguTaMQGACE)
+- [Get data with dynamo table](https://www.youtube.com/watch?v=CpDFfSXRG04)
+- [Create data with dynamo table](https://www.youtube.com/watch?v=AguTaMQGACE)

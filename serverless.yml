@@ -25,6 +25,13 @@ functions:
           path: get-user/{ID}
           method: GET
           cors: true
+  createUser:
+    handler: src/lambdas/create-user.handler
+    events:
+      - http:
+          path: create-user
+          method: POST
+          cors: true
 
 resources:
   Resources:

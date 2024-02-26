@@ -1,0 +1,29 @@
+service: dynamodbcrudtest
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  profile: serverlessLocalUser
+
+custom:
+  tableName: dynamoCrudTest
+
+functions:
+  dynamoDbCrudManager:
+    handler: handler.dynamoDbCrudManager
+
+resources:
+  Resources:
+    DynamoCrudTestTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: ID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ID
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

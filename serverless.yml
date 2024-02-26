@@ -6,6 +6,13 @@ provider:
   name: aws
   runtime: nodejs18.x
   profile: serverlessLocalUser
+  environment:
+    tableName: ${self:custom.tableName}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+          - dynamodb:*
+      Resource: '*'
 
 custom:
   tableName: dynamoCrudTest

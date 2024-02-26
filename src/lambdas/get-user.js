@@ -1,4 +1,7 @@
 const Responses = require('../util/api-responses');
+const Dynamo = require('../util/dynamo');
+
+const tableName = process.env.tableName;
 
 exports.handler = async event => {
     console.log('event ==>', event)
@@ -7,15 +10,14 @@ exports.handler = async event => {
     }
 
     const ID = event.pathParameters.ID;
-    if (data[ID]) {
-        return Responses._200(data[ID]);
+    const user = await Dynamo.get(ID, tableName).catch(err =>{
+        console.log('error in getting the user', err);
+        return null;
+    });
+
+    if(!user){
+        return Responses._400({message: 'Data not found for the provided id'});
     }
 
-    return Responses._400({message: 'Data not found for the provided id'});
+    return Responses._200(user);
 }
-
-const data = {
-    1234: { name: 'Anna Jones', age: 25, job: 'journalist' },
-    7893: { name: 'Chris Smith', age: 52, job: 'teacher' },
-    5132: { name: 'Tom Hague', age: 23, job: 'plasterer' },
-};

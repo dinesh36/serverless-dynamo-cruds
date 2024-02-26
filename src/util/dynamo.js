@@ -38,6 +38,26 @@ const Dynamo = {
         }
 
         return data;
+    },
+
+    async update (ID, data, TableName){
+        if(!ID){
+            throw Error('No ID on the data');
+        }
+
+        const updateItem = {ID, ...data};
+
+        const params = {
+            TableName,
+            Item: updateItem
+        };
+
+        const res = await documentClient.put(params).promise();
+        if(!res){
+            throw Error(`There was an error updating ID of ${data.ID} in table ${TableName}`);
+        }
+
+        return updateItem;
     }
 }
 

@@ -32,6 +32,13 @@ functions:
           path: create-user
           method: POST
           cors: true
+  updateUser:
+    handler: src/lambdas/update-user.handler
+    events:
+      - http:
+          path: update-user/{ID}
+          method: PUT
+          cors: true
 
 resources:
   Resources:

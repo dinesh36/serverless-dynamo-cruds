@@ -39,6 +39,13 @@ functions:
           path: update-user/{ID}
           method: PUT
           cors: true
+  deleteUser:
+    handler: src/lambdas/delete-user.handler
+    events:
+      - http:
+          path: delete-user/{ID}
+          method: DELETE
+          cors: true
 
 resources:
   Resources:

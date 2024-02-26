@@ -24,7 +24,7 @@ const Dynamo = {
 
     async create (data, TableName){
         if(!data.ID){
-            throw Error('No ID on the data');
+            throw Error('Need id to be created');
         }
 
         const params = {
@@ -42,7 +42,7 @@ const Dynamo = {
 
     async update (ID, data, TableName){
         if(!ID){
-            throw Error('No ID on the data');
+            throw Error('Please provid id to update');
         }
 
         const updateItem = {ID, ...data};
@@ -58,6 +58,27 @@ const Dynamo = {
         }
 
         return updateItem;
+    },
+
+    async delete (ID, TableName){
+        if(!ID){
+            throw Error('Please provide id to delete');
+        }
+
+        const params = {
+            TableName,
+            Key: {
+                ID
+            }
+        };
+
+        const res = await documentClient.delete(params).promise();
+
+        if(!res){
+            throw Error(`There was an error updating ID of ${ID} in table ${TableName}`);
+        }
+
+        return res;
     }
 }
 

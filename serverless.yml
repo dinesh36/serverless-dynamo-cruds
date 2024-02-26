@@ -11,8 +11,13 @@ custom:
   tableName: dynamoCrudTest
 
 functions:
-  dynamoDbCrudManager:
-    handler: handler.dynamoDbCrudManager
+  getUser:
+    handler: src/lambdas/get-user.handler
+    events:
+      - http:
+          path: get-user/{ID}
+          method: GET
+          cors: true
 
 resources:
   Resources:
